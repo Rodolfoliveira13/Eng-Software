@@ -1,0 +1,76 @@
+import unittest
+
+# Função que converte números inteiros em algarismos romanos
+def int_to_roman(num):
+    val = [
+        1000, 900, 500, 400,
+        100, 90, 50, 40,
+        10, 9, 5, 4,
+        1
+        ]
+    syb = [
+        "M", "CM", "D", "CD",
+        "C", "XC", "L", "XL",
+        "X", "IX", "V", "IV",
+        "I"
+        ]
+    
+    roman_num = ''
+    i = 0
+    while num > 0:
+        for _ in range(num // val[i]):
+            roman_num += syb[i]
+            num -= val[i]
+        i += 1
+    return roman_num
+
+# Testes da função
+class TestRomanConverter(unittest.TestCase):
+    
+    def test_1(self):
+        self.assertEqual(int_to_roman(1), 'I')
+        
+    def test_4(self):
+        self.assertEqual(int_to_roman(4), 'IV')
+        
+    def test_5(self):
+        self.assertEqual(int_to_roman(5), 'V')
+        
+    def test_9(self):
+        self.assertEqual(int_to_roman(9), 'IX')
+        
+    def test_40(self):
+        self.assertEqual(int_to_roman(40), 'XL')
+        
+    def test_49(self):
+        self.assertEqual(int_to_roman(49), 'XLIX')
+        
+    def test_50(self):
+        self.assertEqual(int_to_roman(50), 'L')
+        
+    def test_90(self):
+        self.assertEqual(int_to_roman(90), 'XC')
+        
+    def test_400(self):
+        self.assertEqual(int_to_roman(400), 'CD')
+        
+    def test_500(self):
+        self.assertEqual(int_to_roman(500), 'D')
+        
+    def test_900(self):
+        self.assertEqual(int_to_roman(900), 'CM')
+        
+    def test_1000(self):
+        self.assertEqual(int_to_roman(1000), 'M')
+        
+    def test_1999(self):
+        self.assertEqual(int_to_roman(1999), 'MCMXCIX')
+        
+    def test_2024(self):
+        self.assertEqual(int_to_roman(2024), 'MMXXIV')
+        
+    def test_3999(self):
+        self.assertEqual(int_to_roman(3999), 'MMMCMXCIX')
+
+if __name__ == '__main__':
+    unittest.main()
